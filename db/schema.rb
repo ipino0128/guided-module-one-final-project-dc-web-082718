@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(version: 14) do
 
   create_table "death_causes", force: :cascade do |t|
     t.string "name"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 8) do
 
   create_table "killers", force: :cascade do |t|
     t.string  "first_name"
-    t.integer "date_of_murders"
+    t.text    "date_of_murders"
     t.string  "gender"
     t.string  "nationality"
     t.boolean "bed_wetter"
@@ -38,13 +38,10 @@ ActiveRecord::Schema.define(version: 8) do
     t.string  "last_name"
     t.integer "age"
     t.string  "gender"
-    t.string  "ethnicity"
-    t.string  "relationship_status"
-    t.string  "occupation"
+    t.string  "nationality"
     t.string  "location_of_death"
-    t.string  "time_of_death"
-    t.integer "cause_of_death_id"
-    t.string  "image_url"
+    t.integer "death_cause_id"
+    t.integer "killer_id"
   end
 
 end
