@@ -1,3 +1,5 @@
+require "pry"
+
 class CommandLineInterface
     ActiveRecord::Base.logger = nil
 
@@ -20,18 +22,73 @@ class CommandLineInterface
     def greet
       puts "Welcome to the Serial Killer Database!"
       puts "We can help you research all your favorite serial killers."
+      puts "Press enter to get started!"
+      STDIN.gets
+      print "              \r"
+
+    end
+
+    def menu
+      puts "Select a number from the following options:"
+
+      puts "_______________________________________"
+      puts "1. Search a serial killer"
+      puts "2. Search a victim"
+      puts "3. Search by cause of death"
+      puts "4. View statistics"
+      puts "5. Add a serial killer to the database"
+      puts "6. Add a victim to the database"
+    end
+
+
+    def selected_search
+      input = gets.chomp
+
+      if input == "1"
+        search_serial_killer
+      elsif input == "2"
+        puts "2 bitch"
+      elsif input == "3"
+        puts "2 bitch"
+      elsif input == "4"
+        puts "2 bitch"
+      elsif input == "5"
+        puts "2 bitch"
+      elsif input == "6"
+        puts "2 bitch"
+      else puts "invalid selection"
+      end
+    end
+
+
+    def search_serial_killer
+      puts "Enter serial killer name:"
+      input = gets.chomp
+
+      Killer.all.select do |killer|
+        # binding.pry
+        if input == killer.fullname || killer.first_name
+          puts "Name: #{killer.fullname}"
+          puts "Known as: #{killer.nickname}"
+          puts "Gender: #{killer.gender}"
+          puts "Murder Spree: #{killer.date_of_murders}"
+          puts "Nationality: #{killer.nationality}"
+          puts "Occupation: #{killer.occupation}"
+          puts "Relationship Status: #{killer.relationship_status}"
+          puts "Legal Status: #{killer.legal_status}"
+          puts "Currently alive? #{killer.alive}"
+
+        end
+      end
+
     end
 
 
     # display menu of options
     # options:
-    #   1. Search for serial killers
-    #   2. Search for victims
-    #   3. Search for causes of death
-    #   4. Add a serial killer to the database
-    #   5. Add a victim to the database
-    #   6. Add a cause of death to the database
 
+
+#******** CLEAR = system('clear')
 
 
   #if clicked 1:
