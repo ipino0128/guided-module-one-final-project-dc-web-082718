@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 8) do
+
+  create_table "death_causes", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "killers", force: :cascade do |t|
     t.string  "first_name"
-    t.integer "date_of_birth"
+    t.integer "date_of_murders"
     t.string  "gender"
-    t.string  "ethnicity"
-    t.string  "state_of_residence"
+    t.string  "nationality"
     t.boolean "bed_wetter"
     t.boolean "pyromania"
     t.boolean "animal_torturer"
@@ -27,6 +30,7 @@ ActiveRecord::Schema.define(version: 3) do
     t.string  "occupation"
     t.text    "legal_status"
     t.string  "article_url"
+    t.boolean "alive"
   end
 
   create_table "victims", force: :cascade do |t|
@@ -37,8 +41,7 @@ ActiveRecord::Schema.define(version: 3) do
     t.string  "ethnicity"
     t.string  "relationship_status"
     t.string  "occupation"
-    t.string  "state_of_residence"
-    t.string  "state_of_murder"
+    t.string  "location_of_death"
     t.string  "time_of_death"
     t.integer "cause_of_death_id"
     t.string  "image_url"
