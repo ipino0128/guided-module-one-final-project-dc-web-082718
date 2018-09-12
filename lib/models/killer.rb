@@ -4,6 +4,12 @@ class Killer < ActiveRecord::Base
   has_many :victims
   has_many :death_causes, through: :victims
 
+  def self.all_killers
+    Killer.all.collect do |killer|
+      puts "#{killer.fullname} \n"
+    end.join
+  end
+
   def fullname
     "#{self.first_name} #{self.last_name}"
   end

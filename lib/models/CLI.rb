@@ -29,7 +29,6 @@ class CommandLineInterface
     end
 
     def menu
-      system('clear')
       puts "Select a number from the following options:"
 
       puts "_______________________________________"
@@ -39,6 +38,7 @@ class CommandLineInterface
       puts "4. View statistics"
       puts "5. Add a serial killer to the database"
       puts "6. Add a victim to the database"
+      puts "7. To exit program."
       selected_search
     end
 
@@ -47,8 +47,9 @@ class CommandLineInterface
       input = gets.chomp
 
       if input == "1"
-        puts "Enter a serial killer's name:"
+
         search_serial_killer
+
       elsif input == "2"
         search_victim
       elsif input == "3"
@@ -59,81 +60,132 @@ class CommandLineInterface
         puts "2 bitch"
       elsif input == "6"
         puts "2 bitch"
+      elsif input == "7"
+        system('clear')
+        exit!
       else
         system('clear')
         puts "Invalid entry."
+        puts "      \n"
+        puts "      \n"
+        menu
       end
     end
 
 
-    def search_serial_killer
-     input = gets.chomp
-     system('clear')
-     this_killer = Killer.all.find do |killer|
-       input.downcase == killer.first_name.downcase || input.downcase == killer.fullname.downcase
-     end
-          puts "Name: #{this_killer.fullname}"
-          puts "Known as: #{this_killer.nickname}"
-          puts "Gender: #{this_killer.gender}"
-          puts "Murder Spree: #{this_killer.date_of_murders}"
-          puts "Nationality: #{this_killer.nationality}"
-          puts "Occupation: #{this_killer.occupation}"
-          puts "Relationship Status: #{this_killer.relationship_status}"
-          puts "Legal Status: #{this_killer.legal_status}"
-          puts "Currently alive: #{this_killer.alive}"
+
+    def search_serial_killer(name = nil)
+      # binding.pry
+      if name != nil
+          puts "Name: #{name.fullname}"
+          puts "Known as: #{name.nickname}"
+          puts "Gender: #{name.gender}"
+          puts "Murder Spree: #{name.date_of_murders}"
+          puts "Nationality: #{name.nationality}"
+          puts "Occupation: #{name.occupation}"
+          puts "Relationship Status: #{name.relationship_status}"
+          puts "Legal Status: #{name.legal_status}"
+          puts "Currently alive: #{name.alive}"
           puts "      \n"
           puts "      \n"
           puts "___________________________________________________"
           puts "Select:"
           puts "1. To go back to main menu."
           puts "2. To search another serial killer."
-          puts "3. To see a list of #{this_killer.fullname}'s victims."
+          puts "3. To see a list of #{name.fullname}'s victims."
                    #display list of victims
                    #to learn more about a victim type in their name
-          puts "4. To see a list of #{this_killer.fullname}'s killing methods."
-          puts "5. To see a list of #{this_killer.fullname}'s Macdonald Triad statistics."
-          puts "6. To read more about #{this_killer.fullname}."
+          puts "4. To see a list of #{name.fullname}'s killing methods."
+          puts "5. To see a list of #{name.fullname}'s Macdonald Triad statistics."
+          puts "6. To read more about #{name.fullname}."
+          puts "7. To go back to #{name.fullname}'s main page.'"
+          puts "8. To exit program."
                     # article_url
                     # binding.pry
-          killer_menu_options(this_killer)
+          killer_menu_options(name)
+        else
+
+          puts "Enter a serial killer's name:"
+          input = gets.chomp
+
+
+          this_killer = Killer.all.find do |killer|
+            input.downcase == killer.first_name.downcase || input.downcase == killer.fullname.downcase
+          end
+
+          if Killer.all.include?(this_killer)
+            search_serial_killer(this_killer)
+          else
+            system('clear')
+            puts "Invalid entry."
+            puts "      \n"
+            puts "Select from the following list of killers:"
+            puts "___________________________________________"
+            Killer.all_killers
+            puts "      \n"
+            search_serial_killer
+          end
+        end
     end
 
-                def killer_menu_options(this_killer)
+                def killer_menu_options(name)
                   input = gets.chomp
                   system('clear')
                   if input == "1"
                     menu
                   elsif input == "2"
-                    puts "Enter a serial killer's name:"
                     search_serial_killer
                   elsif input == "3"
-                    puts this_killer.show_victims
+                    puts name.show_victims
                     puts "___________________________"
-                    puts "Press enter to go back to main menu."
-                      STDIN.gets
-                      print "              \r"
-                      menu
+                    puts "Enter 1 to go back to main menu."
+                    puts "Enter 2 to go back to #{name.fullname}'s page."
+                      next_input = gets.chomp
+                      if next_input == "1"
+                        menu
+                      elsif next_input == "2"
+                        search_serial_killer(name)
+                      end
                   elsif input == "4"
-                    puts this_killer.killer_methods
+                    puts name.killer_methods
                     puts "___________________________"
-                    puts "Press enter to go back to main menu."
-                      STDIN.gets
-                      print "              \r"
-                      menu
+                    puts "Enter 1 to go back to main menu."
+                    puts "Enter 2 to go back to #{name.fullname}'s page."
+                      next_input = gets.chomp
+                      if next_input == "1"
+                        menu
+                      elsif next_input == "2"
+                        search_serial_killer(name)
+                      end
                   elsif input == "5"
-                    puts this_killer.macdonald_triad
+                    puts name.macdonald_triad
                     puts "___________________________"
-                    puts "Press enter to go back to main menu."
-                      STDIN.gets
-                      print "              \r"
-                      menu
+                    puts "Enter 1 to go back to main menu."
+                    puts "Enter 2 to go back to #{name.fullname}'s page."
+                      next_input = gets.chomp
+                      if next_input == "1"
+                        menu
+                      elsif next_input == "2"
+                        search_serial_killer(name)
+                      end
                   elsif input == "6"
-                    puts this_killer.article
+                    puts name.article
                     puts "___________________________"
-                    puts "Press enter to go back to main menu."
-                      STDIN.gets
-                      print "              \r"
-                      menu
+                    puts "Enter 1 to go back to main menu."
+                    puts "Enter 2 to go back to #{name.fullname}'s page."
+                      next_input = gets.chomp
+                      if next_input == "1"
+                        menu
+                      elsif next_input == "2"
+                        search_serial_killer(name)
+                      end
+                    elsif input == "7"
+                      search_serial_killer(name)
+                    elsif input == "8"
+                      exit!
+                    else
+                      puts "Invalid entry."
+                      search_serial_killer(name)
                   end
                 end
 
@@ -142,9 +194,12 @@ class CommandLineInterface
       puts "Enter a victim's name:"
       input = gets.chomp
       system('clear')
+
       this_victim = Victim.all.find do |victim|
         input.downcase == victim.first_name.downcase || input.downcase == victim.fullname.downcase
       end
+
+      if Victim.all.include?(this_victim)
         puts "Name: #{this_victim.fullname}"
         puts "Age: #{this_victim.age}"
         puts "Gender: #{this_victim.gender}"
@@ -160,6 +215,16 @@ class CommandLineInterface
         puts "2. To search another victim."
         puts "3. To learn more about #{this_victim.fullname}'s killer."
         victim_menu_options(this_victim)
+      else
+        system('clear')
+        puts "Invalid entry."
+        puts "      \n"
+        puts "Select from the following list of victims:"
+        puts "___________________________________________"
+        Victim.all_victims
+        puts "      \n"
+        search_victim
+      end
     end
 
                 def victim_menu_options(this_victim)
@@ -170,7 +235,8 @@ class CommandLineInterface
                     menu
                   elsif input == "2"
                     search_victim
-                  # elsif input == "3"
+                  elsif input == "3"
+                    search_serial_killer(this_victim.killer)
                   end
                 end
 
@@ -182,6 +248,9 @@ class CommandLineInterface
       killing_method = DeathCause.all.find do |cause|
         input.downcase == cause.name.downcase
       end
+
+      if DeathCause.all.include?(killing_method)
+
         puts "All killers that used #{killing_method.name.downcase}:"
         puts "__________________________________"
         puts killing_method.show_killers
@@ -195,6 +264,17 @@ class CommandLineInterface
         puts "Select:"
         puts "1. To go back to main menu."
         puts "2. To search another killing method."
+        killing_method_options(killing_method)
+      else
+        system('clear')
+        puts "Invalid entry."
+        puts "      \n"
+        puts "Select from the following list of killing methods:"
+        puts "___________________________________________"
+        DeathCause.all_death_causes
+        puts "      \n"
+        search_cause_of_death
+      end
       end
 
           def killing_method_options(killing_method)
