@@ -6,3 +6,4 @@ new_cli.greet
 
 new_cli.menu
 new_cli.selected_search
+new_cli.search_serial_killer

@@ -56,7 +56,10 @@ class CommandLineInterface
         puts "2 bitch"
       elsif input == "6"
         puts "2 bitch"
-      else puts "invalid selection"
+      else
+        system('clear')
+        puts "Invalid entry."
+        menu
       end
     end
 
@@ -64,24 +67,67 @@ class CommandLineInterface
     def search_serial_killer
       puts "Enter serial killer name:"
       input = gets.chomp
+      system('clear')
+      this_killer = Killer.all.find do |killer|
+       input.downcase == killer.fullname.downcase || killer.first_name.downcase
+     end
+     # binding.pry
+          puts "Name: #{this_killer.fullname}"
+          # binding.pry
+          puts "Known as: #{this_killer.nickname}"
+          puts "Gender: #{this_killer.gender}"
+          puts "Murder Spree: #{this_killer.date_of_murders}"
+          puts "Nationality: #{this_killer.nationality}"
+          puts "Occupation: #{this_killer.occupation}"
+          puts "Relationship Status: #{this_killer.relationship_status}"
+          puts "Legal Status: #{this_killer.legal_status}"
+          puts "Currently alive: #{this_killer.alive}"
+          puts "      \n"
+          puts "      \n"
 
-      Killer.all.select do |killer|
+          puts "___________________________________________________"
+          puts "Select:"
+          puts "1. To go back to main menu."
+          puts "2. To search another serial killer."
+          puts "3. To see a list of #{this_killer.fullname}'s victims."
+                   #display list of victims
+                   #to learn more about a victim type in their name
+          puts "4. To see a list of #{this_killer.fullname}'s killing methods."
+          puts "5. To see a list of #{this_killer.fullname}'s Macdonald Triad statistics."
+          puts "6. To read more about #{this_killer.fullname}."
+                    # article_url
+                    # binding.pry
+          killer_menu_options(this_killer)
+    end
+
+    def killer_menu_options(this_killer)
+      input = gets.chomp
+      system('clear')
+      # binding.pry
+
+      if input == "1"
+        menu
+        selected_search
+      elsif input == "2"
+        search_serial_killer
+      elsif input == "3"
+        puts this_killer.show_victims
+      elsif input == "4"
+        puts this_killer.killer_methods
+      elsif input == "5"
+        puts this_killer.macdonald_triad
+      elsif input == "6"
+        puts this_killer.article
+
+
+
+
         # binding.pry
-        if input == killer.fullname || killer.first_name
-          puts "Name: #{killer.fullname}"
-          puts "Known as: #{killer.nickname}"
-          puts "Gender: #{killer.gender}"
-          puts "Murder Spree: #{killer.date_of_murders}"
-          puts "Nationality: #{killer.nationality}"
-          puts "Occupation: #{killer.occupation}"
-          puts "Relationship Status: #{killer.relationship_status}"
-          puts "Legal Status: #{killer.legal_status}"
-          puts "Currently alive? #{killer.alive}"
-
-        end
       end
 
+
     end
+
 
 
     # display menu of options
