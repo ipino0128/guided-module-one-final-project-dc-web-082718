@@ -5,4 +5,13 @@ class Victim < ActiveRecord::Base
   def fullname
     "#{self.first_name} #{self.last_name}"
   end
+
+  def show_killer
+    "#{self.killer.fullname}"
+  end
+
+  def show_death_cause
+    "#{self.death_cause.name}"
+  end
+
 end
