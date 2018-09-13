@@ -29,16 +29,24 @@ class Killer < ActiveRecord::Base
   end
 
   def macdonald_triad
-    puts "The 'Macdonald triad' is a set of three factors that has been suggested (Macdonald 1963), if all three or any combination of two, are present together, to be predictive of later violent tendencies, particularly with relation to serial offenses."
+    puts "The 'Macdonald triad' is a set of three factors that has been suggested (Macdonald 1963), if all three or any combination of two, are present together, to be predictive of later violent tendencies, particularly with relation to serial offenses.".bold
     puts "        \n"
 
-    puts "Arson: #{self.pyromania}"
+    puts "Arson:".bold + "#{self.pyromania}"
     puts "     (the criminal act of deliberately setting fire to property)"
-    puts "Cruelty to animals: #{self.animal_torturer}"
+    puts "Cruelty to animals:".bold + " #{self.animal_torturer}"
     puts "     (including but not limited to, burning, torturing, killing, and dismemberings)"
-    puts "Enuresis: #{self.bed_wetter}"
+    puts "Enuresis:".bold + " #{self.bed_wetter}"
     puts "     (unintentional bed-wetting during sleep, persistent after the age of five)"
 
   end
 
+
+  def self.macdonald_triad_statistics
+    array = Killer.all.select do |killer|
+      killer.pyromania == true && killer.bed_wetter == true && killer.animal_torturer == true
+    end
+    count = (array.length.to_f / Killer.all.length.to_f) * 100
+    puts "#{count} % of serial killers meet all 3 attributes."
+  end
 end

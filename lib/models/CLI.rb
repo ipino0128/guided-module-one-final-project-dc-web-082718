@@ -16,23 +16,45 @@ class CommandLineInterface
 ░ ░░ ░  ▒ ░  ░ ░     ░ ░      ░     ░░   ░  ░   ░        ░ ░ ░ ▒  ░      ░
 ░  ░    ░      ░  ░    ░  ░   ░  ░   ░       ░  ░ ░          ░ ░         ░
                                              ░  ░
+
 ".red
+
     end
 
-
     def greet
-      puts "Welcome to the Serial Killer Database!"
-      puts "We can help you research all the most notorious killers."
-      puts "Press enter to get started!"
+      puts "Welcome to the Serial Killer Database!".bold
+      puts "We can help you research all the most notorious killers.".bold
+      puts "Press enter to get started!".bold
+      puts "
+      @@@@@                                        @@@@@
+      @@@@@@@                                      @@@@@@@
+      @@@@@@@           @@@@@@@@@@@@@@@            @@@@@@@
+      @@@@@@@@       @@@@@@@@@@@@@@@@@@@        @@@@@@@@
+        @@@@@     @@@@@@@@@@@@@@@@@@@@@     @@@@@
+          @@@@@  @@@@@@@@@@@@@@@@@@@@@@@  @@@@@
+            @@  @@@@@@@@@@@@@@@@@@@@@@@@@  @@
+               @@@@@@@    @@@@@@    @@@@@@
+               @@@@@@      @@@@      @@@@@
+               @@@@@@      @@@@      @@@@@
+                @@@@@@    @@@@@@    @@@@@
+                 @@@@@@@@@@@  @@@@@@@@@@
+                  @@@@@@@@@@  @@@@@@@@@
+              @@   @@@@@@@@@@@@@@@@@   @@
+              @@@@  @@@@ @ @ @ @ @@@@  @@@@
+             @@@@@   @@@ @ @ @ @ @@@   @@@@@
+           @@@@@      @@@@@@@@@@@@@      @@@@@
+         @@@@          @@@@@@@@@@@          @@@@
+      @@@@@              @@@@@@@              @@@@@
+      @@@@@@@                                 @@@@@@@
+      @@@@@                                   @@@@@
+".red.bold
       STDIN.gets
       print "              \r"
 
     end
 
     def menu
-      puts "Select a number from the following options:"
-
-      puts "_______________________________________"
+      puts "Select a number from the following options:".underline.red
       puts "1. Search a serial killer"
       puts "2. Search a victim"
       puts "3. Search by killing method"
@@ -46,11 +68,8 @@ class CommandLineInterface
 
     def selected_search
       input = gets.chomp
-
       if input == "1"
-
         search_serial_killer
-
       elsif input == "2"
         search_victim
       elsif input == "3"
@@ -79,16 +98,40 @@ class CommandLineInterface
     def search_serial_killer(name = nil)
       # binding.pry
       if name != nil
-          puts "Name: #{name.fullname}"
-          puts "Known as: #{name.nickname}"
-          puts "Gender: #{name.gender}"
-          puts "Murder Spree: #{name.date_of_murders}"
-          puts "Nationality: #{name.nationality}"
-          puts "Occupation: #{name.occupation}"
-          puts "Relationship Status: #{name.relationship_status}"
-          puts "Legal Status: #{name.legal_status}"
-          puts "Currently alive: #{name.alive}"
+        system('clear')
+          puts "Name:".bold + " #{name.fullname}"
+          puts "Known as:".bold + " #{name.nickname}"
+          puts "Gender:".bold + " #{name.gender}"
+          puts "Murder Spree:".bold + " #{name.date_of_murders}"
+          puts "Nationality:".bold + " #{name.nationality}"
+          puts "Occupation:".bold + " #{name.occupation}"
+          puts "Relationship Status:".bold + " #{name.relationship_status}"
+          puts "Legal Status:".bold + " #{name.legal_status}"
+          puts "Currently alive:".bold + " #{name.alive}"
           puts "      \n"
+          puts "
+                                       ...
+                                     ;::::;
+                                   ;::::; :;
+                                 ;:::::'   :;
+                                ;:::::;     ;.
+                               ,:::::'       ;
+                               ::::::;
+                               ;:::::;       ;         OOOOOOOO
+                              ,;::::::;     ;'         / OOOOOOO
+                            ;:::::::::`. ,,,;.        /  / DOOOOOO
+                          .';:::::::::::::::::;,     /  /     DOOOO
+                         ,:::::;::::::#{name.first_name};;;;::::;,            DOOO
+                        ;`::::::`'::::::;;;::::: ,#/  /          DOOO
+                        :`:::::::`;::::::;;::: ;::#  /            DOOO
+                        ::`:::::::`;:::::::: ;::::# /              DOO
+                        `:`:::::::`;:::::: ;::::::#/               DOO
+                         :::`:::::::`;; ;:::::::::##                OO
+                         ::::`:::::::`;::::::::;:::#                OO
+                         `:::::`::::::::::::;'`:;::#                O
+                          `:::::`::::::::;' /  / `:#
+                           ::::::`:::::;'  /  /   `#
+                        ".red.bold
           puts "      \n"
           puts "___________________________________________________"
           puts "Select:"
@@ -114,7 +157,7 @@ class CommandLineInterface
           killer_menu_options(name)
         else
 
-          puts "Enter a serial killer's name:"
+          puts "Enter a serial killer's name:".bold.blue
           input = gets.chomp
           system('clear')
 
@@ -203,18 +246,17 @@ class CommandLineInterface
 
 
     def search_victim(name = nil)
-
       if name != nil
-        puts "Name: #{name.fullname}"
-        puts "Age: #{name.age}"
-        puts "Gender: #{name.gender}"
-        puts "Nationality: #{name.nationality}"
-        puts "Location of death: #{name.location_of_death}"
+        puts "Name:".bold + " #{name.fullname}"
+        puts "Age:".bold + " #{name.age}"
+        puts "Gender:".bold + " #{name.gender}"
+        puts "Nationality:".bold + " #{name.nationality}"
+        puts "Location of death:".bold + " #{name.location_of_death}"
         if name.killer != nil
-          puts "Killed by: #{name.show_killer}"
+          puts "Killed by:".bold + " #{name.show_killer}"
         end
         if name.death_cause != nil
-          puts "By means of: #{name.show_death_cause}"
+          puts "By means of:".bold + " #{name.show_death_cause}"
         end
         puts "      \n"
         puts "      \n"
@@ -228,7 +270,7 @@ class CommandLineInterface
         puts "4. To exit program."
         victim_menu_options(name)
       else
-          puts "Enter a victim's name:"
+          puts "Enter a victim's name:".bold.blue
           input = gets.chomp
           system('clear')
 
@@ -269,7 +311,7 @@ class CommandLineInterface
 
 
     def search_cause_of_death
-      puts "Enter a killing method:"
+      puts "Enter a killing method:".bold.blue
       input = gets.chomp
       system('clear')
       killing_method = DeathCause.all.find do |cause|
@@ -277,13 +319,10 @@ class CommandLineInterface
       end
 
       if DeathCause.all.include?(killing_method)
-
-        puts "All killers that used #{killing_method.name.downcase}:"
-        puts "__________________________________"
+        puts "All killers that used #{killing_method.name.downcase}:".underline
         puts killing_method.show_killers
         puts "      \n"
-        puts "All victims killed by #{killing_method.name.downcase}:"
-        puts "__________________________________"
+        puts "All victims killed by #{killing_method.name.downcase}:".underline
         puts killing_method.show_victims
         puts "      \n"
         puts "      \n"
@@ -323,58 +362,54 @@ class CommandLineInterface
     # options:
 
     def add_killer
-      puts "Enter a new killer's first name (or nil if unknown):"
+      puts "Enter a new killer's first name (or nil if unknown):".bold
       firstname = gets.chomp
-      puts "Enter last name (or nil if unknown):"
+      puts "Enter last name (or nil if unknown):".bold
       lastname = gets.chomp
-      puts "Enter gender (or nil if unknown):"
+      puts "Enter gender (or nil if unknown):".bold
       gen = gets.chomp
-      puts "Enter nationality (or nil if unknown):"
+      puts "Enter nationality (or nil if unknown):".bold
       nationality = gets.chomp
-      puts "Enter nickname (or nil if unknown):"
+      puts "Enter nickname (or nil if unknown):".bold
       nickname = gets.chomp
-      puts "Enter relationship status (or nil if unknown):"
+      puts "Enter relationship status (or nil if unknown):".bold
       relationship_status = gets.chomp
-      puts "Enter relationship status (or nil if unknown):"
+      puts "Enter occupation (or nil if unknown):".bold
       occupation = gets.chomp
-      puts "Enter legal status (or nil if unknown):"
+      puts "Enter legal status (or nil if unknown):".bold
       legal_status = gets.chomp
-      puts "Enter true or false for alive (or nil if unknown):"
+      puts "Enter true or false for alive (or nil if unknown):".bold
       alive = gets.chomp
       new_killer = Killer.create(first_name: firstname, last_name: lastname, gender: gen, nationality: nationality, nickname: nickname, relationship_status: relationship_status, occupation: occupation, legal_status: legal_status, alive: alive, article_url: nil)
-
-      puts "To see the new killer you created click enter."
+      puts "To see the new killer you created click enter.".bold
       gets.chomp
       system('clear')
       search_serial_killer(new_killer)
     end
 
     def add_victim
-      puts "Enter a new victim's first name (or nil if unknown):"
+      puts "Enter a new victim's first name (or nil if unknown):".bold
       firstname = gets.chomp
-      puts "Enter last name (or nil if unknown):"
+      puts "Enter last name (or nil if unknown):".bold
       lastname = gets.chomp
-      puts "Enter age (or nil if unknown):"
+      puts "Enter age (or nil if unknown):".bold
       age = gets.chomp
-      puts "Enter gender (or nil if unknown):"
+      puts "Enter gender (or nil if unknown):".bold
       gen = gets.chomp
-      puts "Enter nationality (or nil if unknown):"
+      puts "Enter nationality (or nil if unknown):".bold
       nationality = gets.chomp
-      puts "Enter location of death (or nil if unknown):"
+      puts "Enter location of death (or nil if unknown):".bold
       location_of_death = gets.chomp
-
       new_victim = Victim.create(first_name: firstname, last_name: lastname, age: age, gender: gen, nationality: nationality, location_of_death: location_of_death, death_cause_id: nil, killer_id: nil)
-
-      puts "To see the new victim you created click enter."
+      puts "To see the new victim you created click enter.".bold
       gets.chomp
       system('clear')
       search_victim(new_victim)
     end
 
     def statistics_menu
-
-      puts "Select from the following options:"
-      puts "__________________________________"
+      puts "Select from the following options:".underline
+      puts "      \n"
       puts "1. View prevalence of each killing method."
       puts "2. View percent of murders by state."
       puts "3. View average age of victims."
@@ -382,21 +417,22 @@ class CommandLineInterface
       puts "5. Macdonald Triad statistics for killers."
       puts "6. Return to Main Menu."
       puts "7. Exit program."
-
       statistics_options
     end
 
     def statistics_options
       input = gets.chomp
-
       if input == "1"
         system('clear')
+        puts "Prevalence of each killing method:".underline
+        puts "      \n"
         Victim.death_cause_statistics
         puts "      \n"
         puts "      \n"
         puts "__________________________________"
         puts "Enter 1 to go back to main menu."
         puts "Enter 2 to go back to Statistics Menu options."
+        puts ""
           next_input = gets.chomp
           if next_input == "1"
             system('clear')
@@ -407,14 +443,78 @@ class CommandLineInterface
           end
         elsif input == "2"
           system('clear')
+          puts "Percent of murders by state:".underline
+          puts "      \n"
           Victim.location_statistics
+          puts "      \n"
+          puts "      \n"
+          puts "__________________________________"
+          puts "Enter 1 to go back to main menu."
+          puts "Enter 2 to go back to Statistics Menu options."
+            next_input = gets.chomp
+            if next_input == "1"
+              system('clear')
+              menu
+            elsif next_input == "2"
+              system('clear')
+              statistics_menu
+            end
         elsif input == "3"
-
+          system('clear')
+          puts "Average age of victims".underline
+          puts "      \n"
+          Victim.age_statistics
+          puts "      \n"
+          puts "      \n"
+          puts "__________________________________"
+          puts "Enter 1 to go back to main menu."
+          puts "Enter 2 to go back to Statistics Menu options."
+            next_input = gets.chomp
+            if next_input == "1"
+              system('clear')
+              menu
+            elsif next_input == "2"
+              system('clear')
+              statistics_menu
+            end
         elsif input == "4"
-
+          system('clear')
+          puts "Gender statistics for victims".underline
+          puts "      \n"
+          Victim.gender_statistics
+          puts "      \n"
+          puts "      \n"
+          puts "__________________________________"
+          puts "Enter 1 to go back to main menu."
+          puts "Enter 2 to go back to Statistics Menu options."
+            next_input = gets.chomp
+            if next_input == "1"
+              system('clear')
+              menu
+            elsif next_input == "2"
+              system('clear')
+              statistics_menu
+            end
         elsif input == "5"
-
+          system('clear')
+          puts "Macdonald Triad statistics for killers".underline
+          puts "      \n"
+          Killer.macdonald_triad_statistics
+          puts "      \n"
+          puts "      \n"
+          puts "__________________________________"
+          puts "Enter 1 to go back to main menu."
+          puts "Enter 2 to go back to Statistics Menu options."
+            next_input = gets.chomp
+            if next_input == "1"
+              system('clear')
+              menu
+            elsif next_input == "2"
+              system('clear')
+              statistics_menu
+            end
         elsif input == "6"
+          system('clear')
           menu
         elsif input == "7"
           system('clear')
@@ -425,17 +525,5 @@ class CommandLineInterface
           puts "      \n"
           statistics_menu
         end
-
     end
-#******** CLEAR = system('clear')
-
-
-    # 3. See serial killer statistics
-                # 3.to  see gender statistics
-                #2. to see state statistics
-              #  1. to go back to main menu
-                # 2. to search another serial killer
-
-
-
   end

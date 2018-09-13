@@ -35,7 +35,7 @@ class Victim < ActiveRecord::Base
     total = array.length.to_f
     counts.collect do |key, value|
       percent = (value.to_f/total)*100
-      puts "#{key.name} = #{percent.round(1)}%"
+      puts "#{key.name}".bold + " = #{percent.round(1)}%"
     end
     counts
 
@@ -54,9 +54,39 @@ class Victim < ActiveRecord::Base
     total = array.length.to_f
     counts.collect do |key, value|
       percent = (value.to_f/total)*100
-      puts "#{key.name} = #{percent.round(1)}%"
+      puts "#{key}".bold + " = #{percent.round(1)}%"
     end
     counts
   end
+
+  def self.age_statistics
+    array = []
+    Victim.all.collect do |victim|
+        array << victim.age
+    end
+    average = array.inject(:+) / array.size
+    puts "#{average} years old."
+  end
+
+
+  def self.gender_statistics
+    counts = Hash.new 0
+
+    array = Victim.all.collect do |victim|
+      victim.gender
+    end
+    array.each do |word|
+      counts[word] += 1
+      # binding.pry
+    end
+    total = array.length.to_f
+    counts.collect do |key, value|
+      percent = (value.to_f/total)*100
+      puts "#{key}".bold + " = #{percent.round(1)}%"
+    end
+    counts
+    end
+
+
 
 end
