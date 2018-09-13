@@ -41,8 +41,4 @@ class Killer < ActiveRecord::Base
 
   end
 
-  def article
-    puts "#{self.article_url}"
-  end
-
 end

@@ -1,21 +1,22 @@
 require "pry"
+require 'colorize'
 
 class CommandLineInterface
     ActiveRecord::Base.logger = nil
 
     def greet_image
       puts "
-  ██████ ▓█████  ██▀███   ██▓ ▄▄▄       ██▓        ██ ▄█▀ ██▓ ██▓     ██▓    ▓█████  ██▀███   ██▓███  ▓█████ ▓█████▄  ██▓ ▄▄▄
-▒██    ▒ ▓█   ▀ ▓██ ▒ ██▒▓██▒▒████▄    ▓██▒        ██▄█▒ ▓██▒▓██▒    ▓██▒    ▓█   ▀ ▓██ ▒ ██▒▓██░  ██▒▓█   ▀ ▒██▀ ██▌▓██▒▒████▄
-░ ▓██▄   ▒███   ▓██ ░▄█ ▒▒██▒▒██  ▀█▄  ▒██░       ▓███▄░ ▒██▒▒██░    ▒██░    ▒███   ▓██ ░▄█ ▒▓██░ ██▓▒▒███   ░██   █▌▒██▒▒██  ▀█▄
-  ▒   ██▒▒▓█  ▄ ▒██▀▀█▄  ░██░░██▄▄▄▄██ ▒██░       ▓██ █▄ ░██░▒██░    ▒██░    ▒▓█  ▄ ▒██▀▀█▄  ▒██▄█▓▒ ▒▒▓█  ▄ ░▓█▄   ▌░██░░██▄▄▄▄██
-▒██████▒▒░▒████▒░██▓ ▒██▒░██░ ▓█   ▓██▒░██████▒   ▒██▒ █▄░██░░██████▒░██████▒░▒████▒░██▓ ▒██▒▒██▒ ░  ░░▒████▒░▒████▓ ░██░ ▓█   ▓██▒
-▒ ▒▓▒ ▒ ░░░ ▒░ ░░ ▒▓ ░▒▓░░▓   ▒▒   ▓▒█░░ ▒░▓  ░   ▒ ▒▒ ▓▒░▓  ░ ▒░▓  ░░ ▒░▓  ░░░ ▒░ ░░ ▒▓ ░▒▓░▒▓▒░ ░  ░░░ ▒░ ░ ▒▒▓  ▒ ░▓   ▒▒   ▓▒█░
-░ ░▒  ░ ░ ░ ░  ░  ░▒ ░ ▒░ ▒ ░  ▒   ▒▒ ░░ ░ ▒  ░   ░ ░▒ ▒░ ▒ ░░ ░ ▒  ░░ ░ ▒  ░ ░ ░  ░  ░▒ ░ ▒░░▒ ░      ░ ░  ░ ░ ▒  ▒  ▒ ░  ▒   ▒▒ ░
-░  ░  ░     ░     ░░   ░  ▒ ░  ░   ▒     ░ ░      ░ ░░ ░  ▒ ░  ░ ░     ░ ░      ░     ░░   ░ ░░          ░    ░ ░  ░  ▒ ░  ░   ▒
-      ░     ░  ░   ░      ░        ░  ░    ░  ░   ░  ░    ░      ░  ░    ░  ░   ░  ░   ░                 ░  ░   ░     ░        ░  ░
-                                                                                                              ░
-"
+ ██ ▄█▀ ██▓ ██▓     ██▓    ▓█████  ██▀███        ▄████▄   ▒█████   ███▄ ▄███▓
+ ██▄█▒ ▓██▒▓██▒    ▓██▒    ▓█   ▀ ▓██ ▒ ██▒     ▒██▀ ▀█  ▒██▒  ██▒▓██▒▀█▀ ██▒
+▓███▄░ ▒██▒▒██░    ▒██░    ▒███   ▓██ ░▄█ ▒     ▒▓█    ▄ ▒██░  ██▒▓██    ▓██░
+▓██ █▄ ░██░▒██░    ▒██░    ▒▓█  ▄ ▒██▀▀█▄       ▒▓▓▄ ▄██▒▒██   ██░▒██    ▒██
+▒██▒ █▄░██░░██████▒░██████▒░▒████▒░██▓ ▒██▒ ██▓ ▒ ▓███▀ ░░ ████▓▒░▒██▒   ░██▒
+▒ ▒▒ ▓▒░▓  ░ ▒░▓  ░░ ▒░▓  ░░░ ▒░ ░░ ▒▓ ░▒▓░ ▒▓▒ ░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ░  ░
+░ ░▒ ▒░ ▒ ░░ ░ ▒  ░░ ░ ▒  ░ ░ ░  ░  ░▒ ░ ▒░ ░▒    ░  ▒     ░ ▒ ▒░ ░  ░      ░
+░ ░░ ░  ▒ ░  ░ ░     ░ ░      ░     ░░   ░  ░   ░        ░ ░ ░ ▒  ░      ░
+░  ░    ░      ░  ░    ░  ░   ░  ░   ░       ░  ░ ░          ░ ░         ░
+                                             ░  ░
+".red
     end
 
 
@@ -57,9 +58,9 @@ class CommandLineInterface
       elsif input == "4"
         puts "2 bitch"
       elsif input == "5"
-        puts "2 bitch"
+        add_killer
       elsif input == "6"
-        puts "2 bitch"
+        add_victim
       elsif input == "7"
         system('clear')
         exit!
@@ -92,14 +93,21 @@ class CommandLineInterface
           puts "Select:"
           puts "1. To go back to main menu."
           puts "2. To search another serial killer."
-          puts "3. To see a list of #{name.fullname}'s victims."
+          if name.victims != nil
+            puts "3. To see a list of #{name.fullname}'s victims."
+          end
                    #display list of victims
                    #to learn more about a victim type in their name
-          puts "4. To see a list of #{name.fullname}'s killing methods."
-          puts "5. To see a list of #{name.fullname}'s Macdonald Triad statistics."
-          puts "6. To read more about #{name.fullname}."
-          puts "7. To go back to #{name.fullname}'s main page.'"
-          puts "8. To exit program."
+          if name.death_causes != nil
+            puts "4. To see a list of #{name.fullname}'s killing methods."
+          end
+          if name.pyromania != nil && name.bed_wetter != nil && name.animal_torturer != nil
+            puts "5. To see a list of #{name.fullname}'s Macdonald Triad statistics."
+          end
+          if name.article_url != nil
+            puts "6. To read more about #{name.fullname}."
+          end
+          puts "7. To exit program."
                     # article_url
                     # binding.pry
           killer_menu_options(name)
@@ -107,7 +115,7 @@ class CommandLineInterface
 
           puts "Enter a serial killer's name:"
           input = gets.chomp
-
+          system('clear')
 
           this_killer = Killer.all.find do |killer|
             input.downcase == killer.first_name.downcase || input.downcase == killer.fullname.downcase
@@ -144,6 +152,7 @@ class CommandLineInterface
                       if next_input == "1"
                         menu
                       elsif next_input == "2"
+                        system('clear')
                         search_serial_killer(name)
                       end
                   elsif input == "4"
@@ -155,6 +164,7 @@ class CommandLineInterface
                       if next_input == "1"
                         menu
                       elsif next_input == "2"
+                        system('clear')
                         search_serial_killer(name)
                       end
                   elsif input == "5"
@@ -166,10 +176,12 @@ class CommandLineInterface
                       if next_input == "1"
                         menu
                       elsif next_input == "2"
+                        system('clear')
                         search_serial_killer(name)
                       end
                   elsif input == "6"
-                    puts name.article
+                    command = "open #{name.article_url}"
+                    system(command)
                     puts "___________________________"
                     puts "Enter 1 to go back to main menu."
                     puts "Enter 2 to go back to #{name.fullname}'s page."
@@ -180,8 +192,7 @@ class CommandLineInterface
                         search_serial_killer(name)
                       end
                     elsif input == "7"
-                      search_serial_killer(name)
-                    elsif input == "8"
+                      system('clear')
                       exit!
                     else
                       puts "Invalid entry."
@@ -190,31 +201,42 @@ class CommandLineInterface
                 end
 
 
-    def search_victim
-      puts "Enter a victim's name:"
-      input = gets.chomp
-      system('clear')
+    def search_victim(name = nil)
 
-      this_victim = Victim.all.find do |victim|
-        input.downcase == victim.first_name.downcase || input.downcase == victim.fullname.downcase
-      end
-
-      if Victim.all.include?(this_victim)
-        puts "Name: #{this_victim.fullname}"
-        puts "Age: #{this_victim.age}"
-        puts "Gender: #{this_victim.gender}"
-        puts "Nationality: #{this_victim.nationality}"
-        puts "Location of death: #{this_victim.location_of_death}"
-        puts "Killed by: #{this_victim.show_killer}"
-        puts "By means of: #{this_victim.show_death_cause}"
+      if name != nil
+        puts "Name: #{name.fullname}"
+        puts "Age: #{name.age}"
+        puts "Gender: #{name.gender}"
+        puts "Nationality: #{name.nationality}"
+        puts "Location of death: #{name.location_of_death}"
+        if name.killer != nil
+          puts "Killed by: #{name.show_killer}"
+        end
+        if name.death_cause != nil
+          puts "By means of: #{name.show_death_cause}"
+        end
         puts "      \n"
         puts "      \n"
         puts "___________________________________________________"
         puts "Select:"
         puts "1. To go back to main menu."
         puts "2. To search another victim."
-        puts "3. To learn more about #{this_victim.fullname}'s killer."
-        victim_menu_options(this_victim)
+        if name.killer != nil
+          puts "3. To learn more about #{name.fullname}'s killer."
+        end
+        puts "4. To exit program."
+        victim_menu_options(name)
+      else
+          puts "Enter a victim's name:"
+          input = gets.chomp
+          system('clear')
+
+      this_victim = Victim.all.find do |victim|
+        input.downcase == victim.first_name.downcase || input.downcase == victim.fullname.downcase
+      end
+
+      if Victim.all.include?(this_victim)
+        search_victim(this_victim)
       else
         system('clear')
         puts "Invalid entry."
@@ -226,6 +248,7 @@ class CommandLineInterface
         search_victim
       end
     end
+  end
 
                 def victim_menu_options(this_victim)
                   input = gets.chomp
@@ -237,6 +260,9 @@ class CommandLineInterface
                     search_victim
                   elsif input == "3"
                     search_serial_killer(this_victim.killer)
+                  elsif input == "4"
+                    system('clear')
+                    exit!
                   end
                 end
 
@@ -264,6 +290,7 @@ class CommandLineInterface
         puts "Select:"
         puts "1. To go back to main menu."
         puts "2. To search another killing method."
+        puts "3. To exit program."
         killing_method_options(killing_method)
       else
         system('clear')
@@ -285,42 +312,65 @@ class CommandLineInterface
               menu
             elsif input == "2"
               search_cause_of_death
+            elsif input == "3"
+              system('clear')
+              exit!
             end
           end
 
     # display menu of options
     # options:
 
+    def add_killer
+      puts "Enter a new killer's first name (or nil if unknown):"
+      firstname = gets.chomp
+      puts "Enter last name (or nil if unknown):"
+      lastname = gets.chomp
+      puts "Enter gender (or nil if unknown):"
+      gen = gets.chomp
+      puts "Enter nationality (or nil if unknown):"
+      nationality = gets.chomp
+      puts "Enter nickname (or nil if unknown):"
+      nickname = gets.chomp
+      puts "Enter relationship status (or nil if unknown):"
+      relationship_status = gets.chomp
+      puts "Enter relationship status (or nil if unknown):"
+      occupation = gets.chomp
+      puts "Enter legal status (or nil if unknown):"
+      legal_status = gets.chomp
+      puts "Enter true or false for alive (or nil if unknown):"
+      alive = gets.chomp
+      new_killer = Killer.create(first_name: firstname, last_name: lastname, gender: gen, nationality: nationality, nickname: nickname, relationship_status: relationship_status, occupation: occupation, legal_status: legal_status, alive: alive, article_url: nil)
 
+      puts "To see the new killer you created click enter."
+      gets.chomp
+      system('clear')
+      search_serial_killer(new_killer)
+    end
+
+    def add_victim
+      puts "Enter a new victim's first name (or nil if unknown):"
+      firstname = gets.chomp
+      puts "Enter last name (or nil if unknown):"
+      lastname = gets.chomp
+      puts "Enter age (or nil if unknown):"
+      age = gets.chomp
+      puts "Enter gender (or nil if unknown):"
+      gen = gets.chomp
+      puts "Enter nationality (or nil if unknown):"
+      nationality = gets.chomp
+      puts "Enter location of death (or nil if unknown):"
+      location_of_death = gets.chomp
+
+      new_victim = Victim.create(first_name: firstname, last_name: lastname, age: age, gender: gen, nationality: nationality, location_of_death: location_of_death, death_cause_id: nil, killer_id: nil)
+
+      puts "To see the new victim you created click enter."
+      gets.chomp
+      system('clear')
+      search_victim(new_victim)
+    end
 #******** CLEAR = system('clear')
 
-
-  #if clicked 1:
-  #    Would you like to:
-  #    1. Search by name? Ted bundy
-              #first_name, last_name
-              #nick_name
-              #gender
-              #date_of_murders
-              #nationality
-              #occupation
-              #relationship_status
-              #legal_status
-              #alive
-
-                    # 1. to go back to main menu
-                    # 2. to search another serial killer
-                    # 3. to see a list of ted bundy's victims
-                             #display list of victims
-                             #to learn more about a victim type in their name
-                    #  4. to see a list of ted bundy's killing techniques
-
-                    #  5. to see a list of ted bundy's childhood psycopathic indicators
-                    #  6. to read more about Ted bundy.. article_url
-
-    #    2. Search by state? Wisconsin
-    #     a list of all serial killers in wisconsin
-    #   % of serial killers in wisconsin
 
     # 3. See serial killer statistics
                 # 3.to  see gender statistics
