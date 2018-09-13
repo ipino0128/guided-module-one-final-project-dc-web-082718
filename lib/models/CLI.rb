@@ -22,7 +22,7 @@ class CommandLineInterface
 
     def greet
       puts "Welcome to the Serial Killer Database!"
-      puts "We can help you research all your favorite serial killers."
+      puts "We can help you research all the most notorious killers."
       puts "Press enter to get started!"
       STDIN.gets
       print "              \r"
@@ -56,7 +56,8 @@ class CommandLineInterface
       elsif input == "3"
         search_cause_of_death
       elsif input == "4"
-        puts "2 bitch"
+        system('clear')
+        statistics_menu
       elsif input == "5"
         add_killer
       elsif input == "6"
@@ -368,6 +369,63 @@ class CommandLineInterface
       gets.chomp
       system('clear')
       search_victim(new_victim)
+    end
+
+    def statistics_menu
+
+      puts "Select from the following options:"
+      puts "__________________________________"
+      puts "1. View prevalence of each killing method."
+      puts "2. View percent of murders by state."
+      puts "3. View average age of victims."
+      puts "4. View gender statistics for victims."
+      puts "5. Macdonald Triad statistics for killers."
+      puts "6. Return to Main Menu."
+      puts "7. Exit program."
+
+      statistics_options
+    end
+
+    def statistics_options
+      input = gets.chomp
+
+      if input == "1"
+        system('clear')
+        Victim.death_cause_statistics
+        puts "      \n"
+        puts "      \n"
+        puts "__________________________________"
+        puts "Enter 1 to go back to main menu."
+        puts "Enter 2 to go back to Statistics Menu options."
+          next_input = gets.chomp
+          if next_input == "1"
+            system('clear')
+            menu
+          elsif next_input == "2"
+            system('clear')
+            statistics_menu
+          end
+        elsif input == "2"
+          system('clear')
+          Victim.location_statistics
+        elsif input == "3"
+
+        elsif input == "4"
+
+        elsif input == "5"
+
+        elsif input == "6"
+          menu
+        elsif input == "7"
+          system('clear')
+          exit!
+        else
+          system('clear')
+          puts "Invalid entry."
+          puts "      \n"
+          statistics_menu
+        end
+
     end
 #******** CLEAR = system('clear')
 
