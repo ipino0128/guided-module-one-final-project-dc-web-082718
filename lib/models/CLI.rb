@@ -206,12 +206,29 @@ class CommandLineInterface
           input = gets.chomp
           system('clear')
 
-          this_killer = Killer.all.find do |killer|
+          this_killer = Killer.all.select do |killer|
             input.downcase == killer.first_name.downcase || input.downcase == killer.last_name.downcase || input.downcase == killer.fullname.downcase
           end
 
-          if Killer.all.include?(this_killer)
-            search_serial_killer(this_killer)
+          if this_killer.length > 1
+            puts "Please specify your search by entering the desired fullname from the available killers:".underline
+            puts "      \n"
+            i = 0
+            while i < this_killer.length
+              puts this_killer[i].fullname
+              i += 1
+            end
+            input = gets.chomp
+
+            specific_killer = this_killer.find do |killer|
+              input.downcase == killer.fullname.downcase
+            end
+
+            search_serial_killer(specific_killer)
+
+
+          elsif Killer.all.include?(this_killer)
+            search_serial_killer(this_killer[0])
           else
             system('clear')
             puts "Invalid entry."
@@ -335,11 +352,27 @@ class CommandLineInterface
           input = gets.chomp
           system('clear')
 
-      this_victim = Victim.all.find do |victim|
-        input.downcase == victim.first_name.downcase || input.downcase == victim.last_name.downcase || input.downcase == victim.fullname.downcase
+      this_victim = Victim.all.select do |killer|
+        input.downcase == killer.first_name.downcase || input.downcase == killer.last_name.downcase || input.downcase == killer.fullname.downcase
       end
 
-      if Victim.all.include?(this_victim)
+      if this_victim.length > 1
+        puts "Please specify your search by entering the desired fullname from the available victim:".underline
+        puts "      \n"
+        i = 0
+        while i < this_victim.length
+          puts this_victim[i].fullname
+          i += 1
+        end
+        input = gets.chomp
+
+        specific_victim = this_victim.find do |victim|
+          input.downcase == victim.fullname.downcase
+        end
+        system('clear')
+        search_victim(specific_victim)
+
+      elsif Victim.all.include?(this_victim)
         search_victim(this_victim)
       else
         system('clear')

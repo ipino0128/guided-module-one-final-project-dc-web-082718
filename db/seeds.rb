@@ -159,3 +159,5 @@
 # Victim.create(first_name: "Connor", last_name: "Clems", age: 25, gender: "M", nationality: "American", location_of_death: "California", death_cause_id: 1, killer_id: 23)
 
 # Killer.create(first_name: "Ted", last_name: "Shape", gender: "M", nickname: "XX", date_of_murders: "1983-1978", nationality: "American", bed_wetter: true, pyromania: true, animal_torturer: true, relationship_status: "married", occupation: "Unemployed", legal_status: "Sentenced ", article_url: "https://www.upi.com/Archives/1982/11/11/A-man-described-as-Robin-the-Ripper-suspected-along/9665405838800/", alive: true)
+
+Victim.create(first_name: "Mary", last_name: "Stephens", age: 28, gender: "F", nationality: "American", location_of_death: "Georgia", death_cause_id: 2, killer_id: 25)
