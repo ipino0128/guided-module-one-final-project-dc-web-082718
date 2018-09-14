@@ -162,7 +162,7 @@ class CommandLineInterface
           system('clear')
 
           this_killer = Killer.all.find do |killer|
-            input.downcase == killer.first_name.downcase || input.downcase == killer.fullname.downcase
+            input.downcase == killer.first_name.downcase || input.downcase == killer.last_name.downcase || input.downcase == killer.fullname.downcase
           end
 
           if Killer.all.include?(this_killer)
@@ -275,7 +275,7 @@ class CommandLineInterface
           system('clear')
 
       this_victim = Victim.all.find do |victim|
-        input.downcase == victim.first_name.downcase || input.downcase == victim.fullname.downcase
+        input.downcase == victim.first_name.downcase || input.downcase == victim.last_name.downcase || input.downcase == victim.fullname.downcase
       end
 
       if Victim.all.include?(this_victim)
@@ -458,7 +458,7 @@ class CommandLineInterface
        |_______________________________|
             |  |                |  |
             |__|                |__|
-         "
+         ".red
       statistics_options
     end
 
