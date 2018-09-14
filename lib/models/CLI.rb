@@ -23,14 +23,14 @@ class CommandLineInterface
 
     def greet
       puts "Welcome to the Serial Killer Database!".bold
-      puts "We can help you research all the most notorious killers.".bold
+      puts "We can help you research all of America's most notorious killers.".bold
       puts "Press enter to get started!".bold
       puts "
-      @@@@@                                        @@@@@
-      @@@@@@@                                      @@@@@@@
-      @@@@@@@           @@@@@@@@@@@@@@@            @@@@@@@
-      @@@@@@@@       @@@@@@@@@@@@@@@@@@@        @@@@@@@@
-        @@@@@     @@@@@@@@@@@@@@@@@@@@@     @@@@@
+      @@@@@                                         @@@@@
+      @@@@@@@                                     @@@@@@@
+      @@@@@@@           @@@@@@@@@@@@@@@         @@@@@@@
+      @@@@@@@@       @@@@@@@@@@@@@@@@@@@      @@@@@@@@
+        @@@@@@     @@@@@@@@@@@@@@@@@@@@@    @@@@@@
           @@@@@  @@@@@@@@@@@@@@@@@@@@@@@  @@@@@
             @@  @@@@@@@@@@@@@@@@@@@@@@@@@  @@
                @@@@@@@    @@@@@@    @@@@@@
@@ -39,7 +39,7 @@ class CommandLineInterface
                 @@@@@@    @@@@@@    @@@@@
                  @@@@@@@@@@@  @@@@@@@@@@
                   @@@@@@@@@@  @@@@@@@@@
-              @@   @@@@@@@@@@@@@@@@@   @@
+                @@  @@@@@@@@@@@@@@@@@  @@
               @@@@  @@@@ @ @ @ @ @@@@  @@@@
              @@@@@   @@@ @ @ @ @ @@@   @@@@@
            @@@@@      @@@@@@@@@@@@@      @@@@@
@@ -47,7 +47,7 @@ class CommandLineInterface
       @@@@@              @@@@@@@              @@@@@
       @@@@@@@                                 @@@@@@@
       @@@@@                                   @@@@@
-".red.bold
+".red.blink
       STDIN.gets
       print "              \r"
 
@@ -127,7 +127,7 @@ class CommandLineInterface
          |_______________________________|
               |  |                |  |
               |__|                |__|
-           ".red
+           ".red.bold
            menu
       else
         system('clear')
@@ -180,7 +180,7 @@ class CommandLineInterface
           puts "      \n"
           puts "___________________________________________________"
           puts "Select:"
-          puts "1. To go back to main menu."
+          puts "1. To go back to Main Menu."
           puts "2. To search another serial killer."
           if name.victims != nil
             puts "3. To see a list of #{name.fullname}'s victims."
@@ -235,50 +235,66 @@ class CommandLineInterface
                   elsif input == "3"
                     puts name.show_victims
                     puts "___________________________"
-                    puts "Enter 1 to go back to main menu."
+                    puts "Enter 1 to go back to Main Menu."
                     puts "Enter 2 to go back to #{name.fullname}'s page."
+                    puts "Enter 3 to exit program."
                       next_input = gets.chomp
                       if next_input == "1"
                         menu
                       elsif next_input == "2"
                         system('clear')
                         search_serial_killer(name)
+                      elsif next_input == "3"
+                        system('clear')
+                        exit!
                       end
                   elsif input == "4"
                     puts name.killer_methods
                     puts "___________________________"
-                    puts "Enter 1 to go back to main menu."
+                    puts "Enter 1 to go back to Main Menu."
                     puts "Enter 2 to go back to #{name.fullname}'s page."
+                    puts "Enter 3 to exit program."
                       next_input = gets.chomp
                       if next_input == "1"
                         menu
                       elsif next_input == "2"
                         system('clear')
                         search_serial_killer(name)
+                      elsif next_input == "3"
+                        system('clear')
+                        exit!
                       end
                   elsif input == "5"
                     puts name.macdonald_triad
                     puts "___________________________"
-                    puts "Enter 1 to go back to main menu."
+                    puts "Enter 1 to go back to Main Menu."
                     puts "Enter 2 to go back to #{name.fullname}'s page."
+                    puts "Enter 3 to exit program."
                       next_input = gets.chomp
                       if next_input == "1"
                         menu
                       elsif next_input == "2"
                         system('clear')
                         search_serial_killer(name)
+                      elsif next_input == "3"
+                        system('clear')
+                        exit!
                       end
                   elsif input == "6"
                     command = "open #{name.article_url}"
                     system(command)
                     puts "___________________________"
-                    puts "Enter 1 to go back to main menu."
+                    puts "Enter 1 to go back to Main Menu."
                     puts "Enter 2 to go back to #{name.fullname}'s page."
+                    puts "Enter 3 to exit program."
                       next_input = gets.chomp
                       if next_input == "1"
                         menu
                       elsif next_input == "2"
                         search_serial_killer(name)
+                      elsif next_input == "3"
+                        system('clear')
+                        exit!
                       end
                     elsif input == "7"
                       system('clear')
@@ -307,7 +323,7 @@ class CommandLineInterface
         puts "      \n"
         puts "___________________________________________________"
         puts "Select:"
-        puts "1. To go back to main menu."
+        puts "1. To go back to Main Menu."
         puts "2. To search another victim."
         if name.killer != nil
           puts "3. To learn more about #{name.fullname}'s killer."
@@ -373,7 +389,7 @@ class CommandLineInterface
         puts "      \n"
         puts "___________________________________________________"
         puts "Select:"
-        puts "1. To go back to main menu."
+        puts "1. To go back to Main Menu."
         puts "2. To search another killing method."
         puts "3. To exit program."
         killing_method_options(killing_method)
@@ -476,9 +492,9 @@ class CommandLineInterface
         puts "      \n"
         puts "      \n"
         puts "__________________________________"
-        puts "Enter 1 to go back to main menu."
+        puts "Enter 1 to go back to Main Menu."
         puts "Enter 2 to go back to Statistics Menu options."
-        puts ""
+        puts "Enter 3 to exit program."
           next_input = gets.chomp
           if next_input == "1"
             system('clear')
@@ -486,6 +502,9 @@ class CommandLineInterface
           elsif next_input == "2"
             system('clear')
             statistics_menu
+          elsif next_input == "3"
+            system('clear')
+            exit!
           end
         elsif input == "2"
           system('clear')
@@ -495,8 +514,9 @@ class CommandLineInterface
           puts "      \n"
           puts "      \n"
           puts "__________________________________"
-          puts "Enter 1 to go back to main menu."
+          puts "Enter 1 to go back to Main Menu."
           puts "Enter 2 to go back to Statistics Menu options."
+          puts "Enter 3 to exit program."
             next_input = gets.chomp
             if next_input == "1"
               system('clear')
@@ -504,6 +524,9 @@ class CommandLineInterface
             elsif next_input == "2"
               system('clear')
               statistics_menu
+            elsif next_input == "3"
+              system('clear')
+              exit!
             end
         elsif input == "3"
           system('clear')
@@ -513,8 +536,9 @@ class CommandLineInterface
           puts "      \n"
           puts "      \n"
           puts "__________________________________"
-          puts "Enter 1 to go back to main menu."
+          puts "Enter 1 to go back to Main Menu."
           puts "Enter 2 to go back to Statistics Menu options."
+          puts "Enter 3 to exit program."
             next_input = gets.chomp
             if next_input == "1"
               system('clear')
@@ -522,6 +546,9 @@ class CommandLineInterface
             elsif next_input == "2"
               system('clear')
               statistics_menu
+            elsif next_input == "3"
+              system('clear')
+              exit!
             end
         elsif input == "4"
           system('clear')
@@ -531,8 +558,9 @@ class CommandLineInterface
           puts "      \n"
           puts "      \n"
           puts "__________________________________"
-          puts "Enter 1 to go back to main menu."
+          puts "Enter 1 to go back to Main Menu."
           puts "Enter 2 to go back to Statistics Menu options."
+          puts "Enter 3 to exit program."
             next_input = gets.chomp
             if next_input == "1"
               system('clear')
@@ -540,6 +568,9 @@ class CommandLineInterface
             elsif next_input == "2"
               system('clear')
               statistics_menu
+            elsif next_input == "3"
+              system('clear')
+              exit!
             end
         elsif input == "5"
           system('clear')
@@ -549,8 +580,9 @@ class CommandLineInterface
           puts "      \n"
           puts "      \n"
           puts "__________________________________"
-          puts "Enter 1 to go back to main menu."
+          puts "Enter 1 to go back to Main Menu."
           puts "Enter 2 to go back to Statistics Menu options."
+          puts "Enter 3 to exit program."
             next_input = gets.chomp
             if next_input == "1"
               system('clear')
@@ -558,6 +590,9 @@ class CommandLineInterface
             elsif next_input == "2"
               system('clear')
               statistics_menu
+            elsif next_input == "3"
+              system('clear')
+              exit!
             end
         elsif input == "6"
           system('clear')
